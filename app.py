@@ -1,20 +1,30 @@
-﻿import streamlit as st
+import streamlit as st
+
+from ui.pages import (
+    dashboard,
+    ai_provider_settings,
+    repo_import,
+    assessment_workspace,
+    findings,
+    reports,
+)
 
 st.set_page_config(
-    page_title='ArkInsight',
-    page_icon='🛡️',
-    layout='wide'
+    page_title="ArkInsight",
+    page_icon="🛡️",
+    layout="wide",
 )
 
-st.sidebar.title('ArkInsight')
-page = st.sidebar.radio(
-    'Navigation',
-    ['Dashboard', 'AI Provider Settings', 'Repo Import', 'Assessment Workspace', 'Findings', 'Reports']
-)
+PAGES = {
+    "Dashboard": dashboard.render,
+    "AI Provider Settings": ai_provider_settings.render,
+    "Repository Import": repo_import.render,
+    "Assessment Workspace": assessment_workspace.render,
+    "Findings": findings.render,
+    "Reports": reports.render,
+}
 
-st.title('🛡️ ArkInsight')
-st.subheader('AI Security Assessment Workbench')
+st.sidebar.title("ArkInsight")
+selected_page = st.sidebar.radio("Navigation", list(PAGES.keys()))
 
-st.info(f'Current page: {page}')
-
-st.write('Phase 1 foundation is running successfully.')
+PAGES[selected_page]()
