@@ -8,7 +8,7 @@ def get_ai_provider(provider_name: str, model: str = ""):
         return ManualProvider()
 
     if provider_name == "Ollama":
-        return OllamaProvider(model=model or "llama3.1")
+        return OllamaProvider(model=model or "llama3.1:8b")
 
     if provider_name == "OpenAI":
         return OpenAIProvider(model=model or "gpt-4.1-mini")

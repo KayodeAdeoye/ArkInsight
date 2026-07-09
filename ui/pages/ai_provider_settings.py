@@ -13,7 +13,7 @@ def render():
 
     model = st.text_input(
         "Model",
-        value="llama3.1" if provider_name == "Ollama" else "gpt-4.1-mini"
+        value="llama3.1:8b" if provider_name == "Ollama" else "gpt-4.1-mini"
     )
 
     prompt = st.text_area(
